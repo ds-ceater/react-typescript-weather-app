@@ -130,3 +130,47 @@ button:hover {
     transform: rotate(360deg);
   }
 }
+
+.modeBtn {
+  margin: 0 0 30px auto;
+  display: flex;
+  justify-content: flex-end;
+  width: 60px;
+  background-color: #333;
+  padding: 4px;
+  text-align: center;
+}
+.modeBtnLetter {
+  margin: 0 auto;
+}
+body.dark-mode .modeBtn {
+  background-color: #ddd;
+  color: #333;
+}
+body.dark-mode .wrapper {
+  background: linear-gradient(rgba(0,0,0,0.65),rgba(0, 0, 0, 0.75)), url("./background-image.jpg") center center no-repeat;
+}
+
+body.dark-mode h1 {
+  color: #ccc;
+}
+
+input::placeholder {
+  color: #222;
+}
+body.dark-mode input::placeholder {
+  color: #ddd;
+}
+
+body.dark-mode input[type="text"] {
+  border-bottom: solid 1px #cf4b77;
+}
+
+body.dark-mode button {
+  background-color: #cf4b77;
+  color: #ddd;
+}
+
+body.dark-mode .container {
+  box-shadow: 4px 4px 13px 5px rgba(180, 180, 180, 0.25);
+}
