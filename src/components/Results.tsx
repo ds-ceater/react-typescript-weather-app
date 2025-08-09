@@ -16,11 +16,11 @@ const Results =({results}: ResultsPropsType)=> {
   return (
     <>
     <div className="resultWrap">
-      {country && <div>{country}</div>}
-      {cityName && <div>{cityName}</div>}
-      {temperature && <div>{temperature} <span>℃</span></div>}
-      {conditionText && <div>
-        <img src={icon} alt="icon" /><span>{conditionText}</span></div>}
+        {country && <div className="results-country">{country}</div>}
+        {cityName && <div className="results-city">{cityName}</div>}
+        {temperature && <div className="results-temp">{temperature} <span>℃</span></div>}
+        {conditionText && <div className="results-condition">
+        <img className="icon" src={icon} alt="icon" /><span>{conditionText}</span></div>}
       </div>
     </>
   );

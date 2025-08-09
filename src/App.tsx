@@ -4,7 +4,7 @@ import Form from './components/Form'
 import Results from './components/Results'
 import Loading from './components/Loading'
 import DarkModeToggle from './components/DarkModeToggle'
-// import HowTo from './components/HowTo'
+import HowTo from './components/HowTo'
 import './App.scss'
 
 type ResultsStateType = {
@@ -86,13 +86,13 @@ function App() {
     }
   };
 
-  // 変更点3: フォームからの検索処理を修正し、fetchWeatherDataを呼び出すように変更
+  // フォームからの検索処理を修正し、fetchWeatherDataを呼び出すように変更
   const getWeather = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await fetchWeatherData(city);
   };
 
-  // 変更点4: 履歴リストのクリック時に呼ばれる新しい関数を定義
+  // 履歴リストのクリック時に呼ばれる新しい関数を定義
   const handleSearch = async (city: string) => {
     setCity(city); // フォーム入力欄にクリックした都市名を表示
     await fetchWeatherData(city); // 共通ロジックで天気情報を取得
@@ -124,9 +124,9 @@ function App() {
             )}
           </div>
         </div>
-        {/* <div className="container">
+        <div className="container HowTo">
           <HowTo />
-        </div> */}
+        </div>
       </div>
     </>
   );
