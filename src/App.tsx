@@ -3,6 +3,7 @@ import Title from './components/Title'
 import Form from './components/Form'
 import Results from './components/Results'
 import Loading from './components/Loading'
+import DarkModeToggle from './components/DarkModeToggle'
 import './App.css'
 
 type ResultsStateType = {
@@ -57,13 +58,15 @@ function App() {
       })
       .catch(() => alert("エラーが発生しました。ページをリロードして、もう一度トライしてください。"))
   }
+
   return (
     <>
       <div className="wrapper">
         <div className="container">
-          <button className="modeBtn"  onClick={() => setIsDarkMode(!isDarkMode)}> <span className='modeBtnLetter'>
+          <DarkModeToggle isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode}></DarkModeToggle>
+          {/* <button className="modeBtn"  onClick={() => setIsDarkMode(!isDarkMode)}> <span className='modeBtnLetter'> 
             {isDarkMode ? 'Light' : 'Dark'}</span>
-          </button>
+          </button>*/}
           <Title />
           <Form setCity={setCity} getWeather={getWeather} city={city} />
           {loading? <Loading />: <Results results={results} />}
