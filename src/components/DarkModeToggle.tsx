@@ -10,7 +10,7 @@ const DarkModeToggle = ({ isDarkMode, setIsDarkMode} : DarkModeToggleProps) => {
   return (
     <button className='modeBtn' onClick={() => setIsDarkMode(!isDarkMode)}>
       <span className='modeBtnLetter'>
-        {isDarkMode ? 'Light': 'Dark'}
+        {isDarkMode ? 'to Light': 'to Dark'}
       </span>
     </button>
   )
