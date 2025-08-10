@@ -5,6 +5,7 @@ import Results from './components/Results'
 import Loading from './components/Loading'
 import DarkModeToggle from './components/DarkModeToggle'
 import HowTo from './components/HowTo'
+import Graph from './components/Graph'
 import './App.scss'
 
 type ResultsStateType = {
@@ -14,6 +15,12 @@ type ResultsStateType = {
   conditionText: string;
   icon: string;
 }
+
+type ForecastDayType = {
+  date: string;
+  avgtemp_c: number;
+}
+type ForecastType = ForecastDayType[];
 
 function App() {
   // ダークモード切替
@@ -36,6 +43,8 @@ function App() {
     conditionText: "",
     icon: ""
   });
+  // 3日間の予報データを保持するステート
+  const [forecast, setForecast] = useState<ForecastType>([]);
 
   // 検索履歴の管理
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
@@ -59,8 +68,14 @@ function App() {
     setLoading(true);
 
     try {
-      const res = await fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${targetCity}&aqi=no`);
+      // 現在の天気と週間予報を同時に取得するAPIエンドポイント
+      // forecast.jsonを使用し、days=3で3日間の予報を取得(無料プランのため)
+      const res = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${targetCity}&days=3&aqi=no`);
       const data = await res.json();
+
+      if (data.error) {
+        throw new Error(data.error.message);
+      }
 
       setResults({
         country: data.location.country,
@@ -69,6 +84,14 @@ function App() {
         conditionText: data.current.condition.text,
         icon: data.current.condition.icon
       });
+
+      // レスポンスから3日間の予報データを抽出し、新しいステートにセット
+      const dailyForecasts = data.forecast.forecastday.map((day: any) => ({
+        date: day.date,
+        avgtemp_c: day.day.avgtemp_c
+      }));
+      setForecast(dailyForecasts);
+
       setCity("");
 
       //  検索が成功したタイミングで、履歴を更新するロジックを追加
@@ -107,6 +130,11 @@ function App() {
             <Title />
             <Form setCity={setCity} getWeather={getWeather} city={city} />
             {loading ? <Loading /> : <Results results={results} />}
+            {/* 3日間の予報データがある場合にグラフを表示 */}
+            {forecast.length > 0 &&
+              <div className="graph-container">
+                <Graph forecast={forecast} />
+              </div>}
             {searchHistory.length > 0 && (
               <div className='history'>
                 <h3>最近の検索履歴</h3>
