@@ -109,9 +109,9 @@ function App() {
             {loading ? <Loading /> : <Results results={results} />}
             {searchHistory.length > 0 && (
               <div className='history'>
-                <h3>Recent Search History</h3>
+                <h3>最近の検索履歴</h3>
                 <ul>
-                  {/* 変更点5: `onClick`ハンドラを`handleSearch`に修正 */}
+                  {/* `onClick`ハンドラを`handleSearch`に修正 */}
                   {searchHistory.map((historyCity, index) => (
                     <li key={index} onClick={() => handleSearch(historyCity)}>
                       <span className="historyCityName">

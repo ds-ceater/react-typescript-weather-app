@@ -10,7 +10,7 @@ const DarkModeToggle = ({ isDarkMode, setIsDarkMode} : DarkModeToggleProps) => {
   return (
     <button className='modeBtn' onClick={() => setIsDarkMode(!isDarkMode)}>
       <span className='modeBtnLetter'>
-        {isDarkMode ? 'LIGHTMODE': 'DARKMODE'}
+        {isDarkMode ? '明るくする': '暗くする'}
       </span>
     </button>
   )
