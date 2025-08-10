@@ -45,7 +45,8 @@ const Graph = (props: Props) => {
       {
         label: '平均気温 (°C)',
         data: props.forecast.map(day => day.avgtemp_c),
-        borderColor: 'rgb(75, 192, 192)',
+        borderColor: 'rgb(241, 81, 134)',
+        color: 'rgb(60, 60, 60)',
         tension: 0.1,
       },
     ],
@@ -57,17 +58,39 @@ const Graph = (props: Props) => {
     plugins: {
       legend: {
         position: 'top' as const,
+        labels: {
+          color: 'rgb(60, 60, 60)'
+        }
       },
       title: {
         display: true,
+        color: 'rgb(60, 60, 60)',
         text: '3日間の平均気温の変化',
       },
     },
-    scales: {
+    scales: {      
       y: {
         title: {
+          color: 'rgb(60, 60, 60)',
           display: true,
           text: '気温 (°C)'
+        },
+        ticks: {
+          color: 'rgb(60, 60, 60)'
+        },
+        // grid: {
+        //   color: 'rgb(60, 60, 60)'
+        // },
+        border: {
+          color: 'rgb(60, 60, 60)'
+        }
+      },
+      x: {
+        ticks: {
+          color: 'rgb(60, 60, 60)'
+        },
+        border: {
+          color: 'rgb(60, 60, 60)'
         }
       }
     },
