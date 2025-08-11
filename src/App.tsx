@@ -132,7 +132,7 @@ function App() {
             {loading ? <Loading /> : <Results results={results} />}
             {/* 3日間の予報データがある場合にグラフを表示 */}
             {forecast.length > 0 &&
-              <div className="graph-container">
+              <div className="graph">
                 <Graph forecast={forecast} />
               </div>}
             {searchHistory.length > 0 && (

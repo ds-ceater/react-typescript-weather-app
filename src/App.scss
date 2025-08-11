@@ -3,16 +3,27 @@
 
 :root {
   --color-accent: #f15186;
-  --color-accent-rgb: rgb(241, 81, 134);
   --color-accent-contrast: #fff;
   --color-black: #333;
-  --color-black-rgb: rgb(51, 51, 51);
   --color-gray: #ccc;
-  --color-gray: rgb(204, 204, 204);
   --color-accent-dark: #cf4b77;
   --color-accent-dark-contrast: #ddd;
   --color-navy: #112372;
   --color-blue: #2577d6;
+
+  /* ライトモード用の色変数 */
+  --chart-text-color: rgba(255, 255, 255, 0.8);
+  --chart-grid-color: rgba(167, 167, 167, 0.5);
+  --chart-border-color: rgba(255, 255, 255, 0.9);
+  // --chart-line-color: rgba(241, 81, 134, 1);
+}
+
+.dark-mode {
+  /* ダークモード用の色変数 */
+  --chart-text-color: #f0f0f0;
+  --chart-grid-color: #f0f0f0;
+  --chart-border-color: #f0f0f0;
+  --chart-line-color: #9bd0f5;
 }
 
 
@@ -112,6 +123,7 @@ input[type="text"] {
   letter-spacing: 2px;
   margin-right: 20px;
   font-size: 20px;
+
   &::placeholder {
     color: gray;
     font-size: 1.7rem;
@@ -248,11 +260,17 @@ input::placeholder {
 .graph {
   margin-top: 20px;
 
-  &-container {
+  &Inner {
     display: flex;
     justify-content: center;
     align-items: center;
     max-width: 100%;
+    padding: 10px;
+    background-color: #5b88db;
+    border-radius: 10px;
+    // canvas {
+    //      mix-blend-mode: exclusion;
+    //   }
   }
 }
 
@@ -300,6 +318,7 @@ input::placeholder {
       margin-bottom: 10px;
     }
   }
+
   &Text {
     line-height: 1.6;
   }
@@ -338,7 +357,20 @@ body.dark-mode {
 
   .resultWrap {
     color: var(--color-gray);
+  }
 
+  .results-temp {
+    span {
+      color: var(--color-gray);
+    }
+  }
+
+  .graph {
+    margin-top: 20px;
+
+    &Inner {
+      background-color: #313d53;
+    }
   }
 
   .history {
